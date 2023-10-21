@@ -16,5 +16,4 @@ const DashboardLayout = ({ children }) => {
     </div>
 }
 
-
 export default DashboardLayout
