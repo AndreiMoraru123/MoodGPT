@@ -24,8 +24,8 @@ const Editor = ({ entry }) => {
                     resize: 'none', 
                     overflow: 'hidden', 
                     boxSizing: 'border-box',
-                    width: 'calc(100% - 25px)',  // Adjust width to create a left gap
-                    height: 'calc(100% - 25px)', // Adjust height to create a bottom gap
+                    width: 'calc(100% - 25px)', 
+                    height: 'calc(100% - 25px)',
                     padding: '8px'
                 }} 
             />
