@@ -31,7 +31,7 @@ model JournalEntry {
   content String @db.Text
 
   analysis Analysis?
-   
+
   @@unique([userId, id])
 }
 
@@ -43,10 +43,11 @@ model Analysis {
   entryId String
   entry   JournalEntry @relation(fields: [entryId], references: [id])
 
-  mood     String
+  mood     String  @db.Text
   summary  String  @db.Text
-  color    String
+  color    String  @db.Text
   negative Boolean
+  subject  String  @db.Text
 
   @@unique([entryId])
 }
