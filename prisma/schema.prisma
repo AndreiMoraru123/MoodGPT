@@ -12,42 +12,42 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  clerkId String         @unique
-  email   String         @unique
-  entries JournalEntry[]
+  id        String         @id @default(uuid())
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  clerkId   String         @unique
+  email     String         @unique
+  entries   JournalEntry[]
+  analyses  Analysis[]
 }
 
 model JournalEntry {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  userId  String
-  user    User   @relation(fields: [userId], references: [id])
-  content String @db.Text
-
-  analysis Analysis?
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  content   String    @db.Text
+  analysis  Analysis?
 
   @@unique([userId, id])
 }
 
 model Analysis {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  entryId String
-  entry   JournalEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
-
-  mood     String  @db.Text
-  summary  String  @db.Text
-  color    String  @db.Text
-  negative Boolean
-  subject  String  @db.Text
+  id             String       @id @default(uuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  entryId        String
+  entry          JournalEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  userId         String
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mood           String       @db.Text
+  summary        String       @db.Text
+  color          String       @db.Text
+  negative       Boolean
+  subject        String       @db.Text
+  sentimentScore Float        @default(0)
 
   @@unique([entryId])
+  @@index([userId])
 }
