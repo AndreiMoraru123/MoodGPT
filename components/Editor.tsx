@@ -26,36 +26,28 @@ const Editor = ({ entry }) => {
     })
     return (
         <div className="w-full h-full relative overflow-hidden grid grid-cols-3">
-            <div className="col-span-2">
+            <div className="col-span-2 relative">
                 {isLoading && <div>...loading</div>}
-                <textarea className="absolute top-0 text-xl outline-none"
-                    value={value} onChange={(e) => setValue(e.target.value)}
-                    style={{
-                        resize: 'none',
-                        overflow: 'hidden',
-                        boxSizing: 'border-box',
-                        width: 'calc(100% - 25px)',
-                        height: 'calc(100% - 25px)',
-                        padding: '8px'
-                    }}
+                <textarea 
+                    className="w-full h-full text-xl outline-none p-4" 
+                    value={value} 
+                    onChange={(e) => setValue(e.target.value)}
                 />
-
+            </div>
+            <div className="col-span-1">
+                <div className='px-5 py-5' style={{ backgroundColor: color }}>
+                    <h2 className="text-2xl">Analysis</h2>
+                </div>
                 <div>
-                    <div className='px-5 py-5' style={{ backgroundColor: color }}>
-                        <h2 className="text-2xl">Analysis</h2>
-                    </div>
-                    <div>
-                        <ul>
-                            {analysisData.map((item) => (
-                                <li key={item.name}
-                                    className='px-2  py-4 flex items-center justify-between
-                                border-b border-black/15'>
-                                    <span className='text-lg font-semibold'>{item.name}</span>
-                                    <span>{item.value}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    <ul>
+                        {analysisData.map((item) => (
+                            <li key={item.name}
+                                className='px-2 py-4 flex items-center justify-between border-b border-black/15'>
+                                <span className='text-lg font-semibold'>{item.name}</span>
+                                <span>{item.value}</span>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </div>
